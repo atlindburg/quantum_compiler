@@ -20,8 +20,5 @@ Release/
 *.swp
 *.swo
 
-# Bash scripts
-git-push-current-branch.sh
-
 # Unity
 Unity/
