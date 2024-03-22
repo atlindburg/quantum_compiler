@@ -35,7 +35,7 @@ TEST_OBJ = $(OBJ_DIR)/all_tests.o
 TEST_MODULE_OBJS = $(OBJ_DIR)/test_qubit.o $(OBJ_DIR)/test_xgate.o $(OBJ_DIR)/unity.o
 
 # Object files for the implementations being tested
-IMPL_OBJS = $(OBJ_DIR)/qubit.o $(OBJ_DIR)/xgate.o
+IMPL_OBJS = $(OBJ_DIR)/qubit.o $(OBJ_DIR)/xgate.o $(OBJ_DIR)/measure.o
 
 # Rule for compiling the source files
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c

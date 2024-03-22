@@ -1,3 +1,6 @@
+#include "../include/quantum_sim.h"
+#include "../include/all_tests.h"
+
 int measure(Qubit *q) {
     // Seed the random number generator only once
     // (Call this somewhere in the initialization part of your program)
