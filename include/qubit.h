@@ -10,7 +10,6 @@ typedef struct {
 
 // Function declarations related to qubit operations
 void initialize_qubit(Qubit *q, double complex state0, double complex state1);
-void apply_x_gate(Qubit *q);
 
 #endif // QUBIT_H
 

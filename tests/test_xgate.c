@@ -1,6 +1,4 @@
 #include "../include/quantum_sim.h"
-#include "../include/xgate.h"
-#include "../include/test_xgate.h"
 #include "../Unity/src/unity.h"
 
 void setUp(void) {

@@ -1,4 +1,6 @@
 #include "../include/quantum_sim.h"
+#include "../include/qubit.h"
+#include "../include/xgate.h"
 #include "../include/test_qubit.h"
 #include "../include/test_xgate.h"
 #include "../Unity/src/unity.h"
