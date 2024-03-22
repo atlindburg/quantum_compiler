@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <complex.h>
 #include <math.h>
+#include <time.h>
 
 // Third-party libraries
 #include <gsl/gsl_matrix.h>
