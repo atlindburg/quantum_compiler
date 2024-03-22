@@ -1,5 +1,6 @@
+#include "../Unity/src/unity_config.h"
 #include "../include/quantum_sim.h"
-#include "../Unity/src/unity.h"
+#include "../include/all_tests.h"
 
 void setUp(void) {
     // set stuff up here
