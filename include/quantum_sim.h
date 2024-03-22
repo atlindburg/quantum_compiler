@@ -17,6 +17,7 @@
 // Your project's headers
 #include "qubit.h"
 #include "xgate.h"
+#include "measure.h"
 
 // Global constants and macros
 // ...

@@ -32,7 +32,7 @@ TEST_OBJ = $(OBJ_DIR)/all_tests.o
 
 # Object files for individual test modules and Unity (assuming unity.c is in the specified Unity src directory)
 # Add object files for your test modules (excluding the main test runner all_tests.c)
-TEST_MODULE_OBJS = $(OBJ_DIR)/test_qubit.o $(OBJ_DIR)/test_xgate.o $(OBJ_DIR)/unity.o
+TEST_MODULE_OBJS = $(OBJ_DIR)/test_qubit.o $(OBJ_DIR)/test_xgate.o $(OBJ_DIR)/test_measurement.o $(OBJ_DIR)/unity.o
 
 # Object files for the implementations being tested
 IMPL_OBJS = $(OBJ_DIR)/qubit.o $(OBJ_DIR)/xgate.o $(OBJ_DIR)/measure.o

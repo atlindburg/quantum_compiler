@@ -8,6 +8,7 @@
 // Include the project's test headers
 #include "test_qubit.h"
 #include "test_xgate.h"
+#include "test_measurement.h"
 // Add more test headers as needed
 
 // Optional: Common utility functions or macros for tests
