@@ -1,4 +1,3 @@
-#include "../Unity/src/unity_config.h"
 #include "../include/quantum_sim.h"
 #include "../include/all_tests.h"
 
