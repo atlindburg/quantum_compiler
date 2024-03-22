@@ -1,5 +1,7 @@
 #include "../include/quantum_sim.h"
-#include "unity.h"
+#include "../include/xgate.h"
+#include "../include/test_xgate.h"
+#include "../Unity/src/unity.h"
 
 void setUp(void) {
     // set stuff up here
@@ -19,7 +21,7 @@ void test_xgate_flips_qubit(void) {
     TEST_ASSERT_EQUAL_INT(0, qubit);
 }
 
-int main(void) {
+int test_xgate_run_tests(void) {
     UNITY_BEGIN();
     RUN_TEST(test_xgate_flips_qubit);
     return UNITY_END();

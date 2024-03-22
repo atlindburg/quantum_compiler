@@ -15,6 +15,8 @@
 // Your project's headers
 #include "qubit.h"
 #include "xgate.h"
+#include "test_qubit.h"
+#include "test_xgate.h"
 
 // Global constants and macros
 // ...
