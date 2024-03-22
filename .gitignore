@@ -1,5 +1,24 @@
-*.o
+# Object files
+obj/
+
+# Executables
 *.exe
 *.out
-quantum_simulator
+*.dll
+*.so
 
+# Debug files
+*.dSYM/
+
+# Build directories
+build/
+Debug/
+Release/
+
+# Other files and directories to ignore
+.vscode/
+*.swp
+*.swo
+
+# Bash scripts
+git-push-current-branch.sh

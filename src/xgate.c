@@ -1,5 +1,5 @@
 // xgate.c
-#include "xgate.h"
+#include "quantum_sim.h"
 
 // Implementation of the XGate function
 void XGate(int *qubit) {

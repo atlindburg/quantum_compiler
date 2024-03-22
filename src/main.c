@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include "xgate.h"
+#include "quantum_sim.h"
 
 int main() {
     int qubit = 0; // Assume 0 represents the |0⟩ state

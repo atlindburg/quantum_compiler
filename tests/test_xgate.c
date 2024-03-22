@@ -1,5 +1,5 @@
+#include "../include/quantum_sim.h"
 #include "unity.h"
-#include "xgate.h"
 
 void setUp(void) {
     // set stuff up here
