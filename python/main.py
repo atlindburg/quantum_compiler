@@ -24,7 +24,7 @@ def main():
 
     # Compile the quantum program
     compiler = Compile(source_code)
-    compiler.run_lexer()
+    compiler.compile()
 
     # Add more logic as needed
 
