@@ -3,12 +3,16 @@
 #ifndef QUANTUM_SIM_H
 #define QUANTUM_SIM_H
 
+// Definitions
+#define PY_SSIZE_T_CLEAN
+
 // Standard library headers
 #include <stdio.h>
 #include <stdlib.h>
 #include <complex.h>
 #include <math.h>
 #include <time.h>
+#include <Python.h>
 
 // Third-party libraries
 #include <gsl/gsl_matrix.h>
@@ -18,6 +22,7 @@
 #include "qubit.h"
 #include "xgate.h"
 #include "measure.h"
+#include "compile.h"
 
 // Global constants and macros
 // ...

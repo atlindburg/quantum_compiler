@@ -17,3 +17,8 @@ void testMeasure0State() {
     int measurement = measure(&q);
     assertMeasurement(0, measurement, "testMeasure0State");
 }
+
+void test_measurement_run_tests(void) {
+    RUN_TEST(testMeasure0State);
+    // Add RUN_TEST for any additional measurement tests you create
+}

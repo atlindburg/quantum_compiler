@@ -2,7 +2,7 @@
 CC = gcc
 
 # Flags for compiler
-CFLAGS = -Iinclude -I/home/vboxuser/quantum_compiler/Unity/src -Wall -g
+CFLAGS = -Iinclude -I/home/vboxuser/quantum_compiler/Unity/src -I/usr/include/python3.10 -Wall -g
 
 # Object files directory
 OBJ_DIR = obj
