@@ -41,6 +41,7 @@ def lexer(code):
                     tokens.append(Token(token_type, match))
                 break
         code = code[len(match):]  # This line should be aligned with while loop
+    tokens.append(Token('EOF', 'EOF'))  # Append an EOF token at the end
     return tokens
 
 # Ensure this part is commented out or under a '__main__' guard
