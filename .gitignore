@@ -6,6 +6,7 @@ obj/
 *.out
 *.dll
 *.so
+*.sh
 
 # Debug files
 *.dSYM/
