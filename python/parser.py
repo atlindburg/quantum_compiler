@@ -63,10 +63,13 @@ class Parser:
 
 # Define AST node classes here, e.g.,
 class SetStatement:
-    def __init__(self, qubit_id, state0, state1):
+    def __init__(self, qubit_id, number1, state0, number2, state1):
         self.qubit_id = qubit_id
+        self.number1 = number1
         self.state0 = state0
+        self.number2 = number2
         self.state1 = state1
+
 
 class GateApplication:
     def __init__(self, gate, qubit_number):
