@@ -2,11 +2,12 @@ class Compile:
     def __init__(self, source_code):
         self.source_code = source_code
 
-    def compile(self):
+    def run_lexer(self):
         print("Compiling the source code...")
         # Tokenize the source code using lexer
-        from .lexer import lexer
+        from lexer import lexer
         tokens = lexer(self.source_code)
+        print("Source code: ", self.source_code)
         print("Tokens:", tokens)
         # Further processing like parsing and code generation goes here
 

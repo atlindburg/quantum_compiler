@@ -1,7 +1,7 @@
 import sys
 import random
 import time
-from .compile import Compile  # Adjust import path as needed
+from compile import Compile  # Adjust import path as needed
 
 def main():
     # Initialize the random number generator
@@ -23,7 +23,8 @@ def main():
         sys.exit(1)
 
     # Compile the quantum program
-    Compile(source_code)
+    compiler = Compile(source_code)
+    compiler.run_lexer()
 
     # Add more logic as needed
 
