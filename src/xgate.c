@@ -8,3 +8,9 @@ void XGate(int *qubit) {
     *qubit = !(*qubit);
 }
 
+// Apply the X (Pauli-X) gate to a qubit
+void apply_x_gate(Qubit *q) {
+    double complex temp = q->state0;
+    q->state0 = q->state1;
+    q->state1 = temp;
+}
