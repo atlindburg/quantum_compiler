@@ -4,6 +4,7 @@ class Parser:
         self.current_token_index = 0
 
     def eat(self, token_type):
+        print(f"Trying to eat: {token_type}, current token: {self.current_token().type}")
         if self.current_token().type == token_type:
             self.current_token_index += 1
         else:
@@ -15,12 +16,15 @@ class Parser:
     def parse(self):
         statements = []
         while self.current_token().type != 'EOF':
-            if self.current_token().type == 'SET':
+            if self.current_token().type == 'NEWLINE':  # Skip over any NEWLINE tokens
+                self.eat('NEWLINE')
+                continue  # Move to the next token without executing the rest of the loop
+            elif self.current_token().type == 'SET':
                 statements.append(self.parse_set_statement())
             elif self.current_token().type == 'APPLY':
                 statements.append(self.parse_gate_application())
             else:
-                raise SyntaxError("Unknown statement start")
+                raise SyntaxError(f"Unknown statement start with token: {self.current_token().type} {self.current_token().value}")
         return statements
 
     def parse_set_statement(self):

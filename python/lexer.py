@@ -27,7 +27,7 @@ class Token:
     def __repr__(self):
         return f'Token({self.type}, {self.value})'
 
-def lexer(code):
+def Lexer(code):
     tokens = []
     while code:
         match = None

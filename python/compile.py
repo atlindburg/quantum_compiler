@@ -6,8 +6,8 @@ class Compile:
 
     def run_lexer(self):
         print("Tokenizing the source code...")
-        from lexer import lexer  # Adjust the import as needed
-        self.tokens = lexer(self.source_code)
+        from lexer import Lexer  # Adjust the import as needed
+        self.tokens = Lexer(self.source_code)
         print("Tokens:", self.tokens)
 
     def run_parser(self):
@@ -17,17 +17,25 @@ class Compile:
         self.ast = parser.parse()
         print("AST:", self.ast)
 
-    def execute_or_generate_code(self):
-        # Placeholder for further processing
-        # This could involve executing the AST directly or transforming it into another form
-        print("Executing or generating code from the AST...")
-        # Implement execution or code generation logic here
+    def run_semantic_analysis(self):
+        print("Performing semantic analysis...")
+        from semantic_analyzer import SemanticAnalyzer  # Adjust the import as needed
+        analyzer = SemanticAnalyzer(self.ast)
+        analyzer.analyze()  # This will raise an exception if a semantic error is found
+
+    def run_code_generation(self):
+        print("Generating C code...")
+        from code_generator import CodeGenerator
+        code_generator = CodeGenerator(self.ast)
+        self.generated_code = code_generator.generate()
+        print("Generated C code:\n", self.generated_code)
 
     def compile(self):
         try:
             self.run_lexer()
             self.run_parser()
-            self.execute_or_generate_code()
+            self.run_semantic_analysis()  # Include semantic analysis after parsing
+            self.run_code_generation()
         except SyntaxError as e:
             print(f"Compilation error: {e}")
 
