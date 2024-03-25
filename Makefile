@@ -2,7 +2,7 @@
 CC = gcc
 
 # Flags for compiler
-CFLAGS = -Iinclude -I/home/vboxuser/quantum_compiler/Unity/src -I/usr/include/python3.10 -Wall -g
+CFLAGS = -Iinclude -I/home/vboxuser/quantum_compiler/Unity/src -I/usr/include/python3.10 -Wall -g -fPIC
 
 # Object files directory
 OBJ_DIR = obj
@@ -10,8 +10,17 @@ OBJ_DIR = obj
 # Library directory
 LIB_DIR = lib
 
+# Output directory for shared library
+LIB_OUT_DIR = $(LIB_DIR)
+
 # Source files directory (for non-test sources)
 SRC_DIR = src
+
+# Name of the shared library
+LIB_NAME = libquantum.so
+
+# Full path for the shared library
+LIB_OUT = $(LIB_OUT_DIR)/$(LIB_NAME)
 
 # Output binary for the main application
 OUT = quantum_simulator
@@ -57,8 +66,16 @@ test: $(TEST_OUT)
 $(TEST_OUT): $(TEST_OBJ) $(TEST_MODULE_OBJS) $(IMPL_OBJS)
 	$(CC) $(CFLAGS) -o $@ $^ -L$(LIB_DIR) -lgsl -lgslcblas -lm
 
-# Default rule to build the whole project
-all: $(OUT)
+# Rule for creating the shared library
+$(LIB_OUT): $(IMPL_OBJS)
+	mkdir -p $(LIB_OUT_DIR)
+	$(CC) -shared -o $@ $(IMPL_OBJS) -lgsl -lgslcblas
+
+# Add a target to build the shared library
+lib: $(LIB_OUT)
+
+# Include the new 'lib' target in the default build process if desired
+all: $(OUT) lib
 
 # Rule for linking the main application program
 $(OUT): $(OBJS)
