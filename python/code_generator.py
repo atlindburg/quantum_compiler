@@ -1,5 +1,7 @@
 import ctypes
 from parser import SetStatement, GateApplication
+from c_integration import Qubit
+from parser import SetStatement, GateApplication
 
 class CodeGenerator:
     def __init__(self, ast):
@@ -7,6 +9,10 @@ class CodeGenerator:
         self.code = []
         # Load the shared library
         self.lib = ctypes.CDLL('./lib/libquantum.so')  # Adjust the path as necessary
+        # Specify argtypes and restype for initialize_qubit
+        self.lib.initialize_qubit.argtypes = [ctypes.POINTER(Qubit), ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double]
+        self.lib.initialize_qubit.restype = None
+
 
     def generate(self):
         for statement in self.ast:
@@ -17,17 +23,20 @@ class CodeGenerator:
         return "\n".join(self.code)
 
     def handle_set_statement(self, statement):
-        # Import qubit handling
-        from c_integration import Qubit
         # Convert the state strings to real and imaginary parts as needed
         state0_real = float(statement.state0.strip('{}').split()[0])  # Extract real part
         state0_imag = float(statement.state0.strip('{}').split()[1]) if len(statement.state0.strip('{}').split()) > 1 else 0.0  # Extract imaginary part if present
         state1_real = float(statement.state1.strip('{}').split()[0])  # Extract real part
         state1_imag = float(statement.state1.strip('{}').split()[1]) if len(statement.state1.strip('{}').split()) > 1 else 0.0  # Extract imaginary part if present
+         # Print debugging statements
+        print(f"Debug: state0_real={state0_real}, state0_imag={state0_imag}, state1_real={state1_real}, state1_imag={state1_imag}")
 
         # Create a Qubit instance
         qubit = Qubit(state0_real=state0_real, state0_imag=state0_imag,
                       state1_real=state1_real, state1_imag=state1_imag)
+
+        # Print a debug message before calling the C function
+        print(type(qubit), type(state0_real), type(state0_imag), type(state1_real), type(state1_imag))
 
         # Call the initialize_qubit method of QuantumLib with the qubit instance
         self.lib.initialize_qubit(ctypes.byref(qubit), state0_real, state0_imag, state1_real, state1_imag)
