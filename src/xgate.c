@@ -1,6 +1,7 @@
 // xgate.c
 #include "quantum_sim.h"
 
+/*
 // Implementation of the XGate function
 void XGate(int *qubit) {
     // Assuming a simple model where a qubit is represented as a binary state:
@@ -14,3 +15,4 @@ void apply_x_gate(Qubit *q) {
     q->state0 = q->state1;
     q->state1 = temp;
 }
+*/

@@ -4,12 +4,14 @@
 #define QUBIT_H
 
 typedef struct {
-    double complex state0;  // Amplitude for |0>
-    double complex state1;  // Amplitude for |1>
+    double state0_real;
+    double state0_imag;
+    double state1_real;
+    double state1_imag;
 } Qubit;
 
 // Function declarations related to qubit operations
-void initialize_qubit(Qubit *q, double complex state0, double complex state1);
+void initialize_qubit(Qubit *q, double state0_real, double state0_imag, double state1_real, double state1_imag);
 
 #endif // QUBIT_H
 

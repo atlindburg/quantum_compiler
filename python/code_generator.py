@@ -17,12 +17,24 @@ class CodeGenerator:
         return "\n".join(self.code)
 
     def handle_set_statement(self, statement):
-        # Prepare the arguments as ctypes
-        qubit_id = ctypes.c_int(int(statement.qubit_id.strip('q')))  # Assuming qubit_id is like 'q1', 'q2', etc.
-        state0 = ctypes.c_double(float(statement.state0.strip('{}')))  # Assuming state0 is like '{0.0}', '{1.0}', etc.
-        state1 = ctypes.c_double(float(statement.state1.strip('{}')))
-        # Call the C function
-        self.lib.initialize_qubit(qubit_id, state0, state1)
+        # Import qubit handling
+        from c_integration import Qubit
+        # Convert the state strings to real and imaginary parts as needed
+        state0_real = float(statement.state0.strip('{}').split()[0])  # Extract real part
+        state0_imag = float(statement.state0.strip('{}').split()[1]) if len(statement.state0.strip('{}').split()) > 1 else 0.0  # Extract imaginary part if present
+        state1_real = float(statement.state1.strip('{}').split()[0])  # Extract real part
+        state1_imag = float(statement.state1.strip('{}').split()[1]) if len(statement.state1.strip('{}').split()) > 1 else 0.0  # Extract imaginary part if present
+
+        # Create a Qubit instance
+        qubit = Qubit(state0_real=state0_real, state0_imag=state0_imag,
+                      state1_real=state1_real, state1_imag=state1_imag)
+
+        # Call the initialize_qubit method of QuantumLib with the qubit instance
+        self.lib.initialize_qubit(ctypes.byref(qubit), state0_real, state0_imag, state1_real, state1_imag)
+
+        # Add to code (if you're generating a representation, or directly execute the function call)
+        # Assuming you're keeping track of generated code or direct execution
+        #self.code.append(f"Initialized qubit with states {statement.state0} and {statement.state1}")
 
     def handle_gate_application(self, statement):
         # Prepare the arguments as ctypes
