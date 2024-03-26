@@ -73,6 +73,9 @@ class SetStatement:
         self.state0 = state0
         self.number2 = number2
         self.state1 = state1
+        # Debugging statements to check the values upon instantiation
+        print(f"Initializing SetStatement with:")
+        print(f"qubit_id: {qubit_id}, number1: {number1}, state0: {state0}, number2: {number2}, state1: {state1}")
 
 
 class GateApplication:
