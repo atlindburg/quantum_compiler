@@ -8,7 +8,7 @@ TOKEN_REGEX = [
     (r'TO', 'TO'),
     (r'qubit', 'QUBIT'),
     (r'X|H|CNOT', 'GATE'),
-    (r'\d+', 'NUMBER'),
+    (r'-?(\d+(\.\d*)?|\.\d+)', 'NUMBER'),  # Updated NUMBER regex
     (r';', 'SEMICOLON'),
     (r'SET', 'SET'),  # Added token for SET
     (r'q[0-9]+', 'QUBIT_ID'),  # Pattern for qubit identifiers like q1, q2, etc.
