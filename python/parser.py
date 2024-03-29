@@ -33,25 +33,30 @@ class Parser:
         self.eat('QUBIT_ID')
         self.eat('TO')
 
-        # New line to consume the NUMBER token
-        number = self.current_token().value
-        self.eat('NUMBER')
+        # Handling both real, imaginary and complex numbers
+        if self.current_token().type == 'COMPLEX_NUMBER':
+            complex_number = self.current_token().value
+            self.eat('COMPLEX_NUMBER')
+        else:
+            complex_number = None  # or use a default value or an error handling
+            raise SyntaxError("Expected a complex or real number for qubit amplitude")
 
         state0 = self.current_token().value
         self.eat('QUBIT_STATE')
 
-        # If you want to consume another NUMBER token here as per your script
-        number2 = self.current_token().value
-        self.eat('NUMBER')
+        if self.current_token().type == 'COMPLEX_NUMBER':
+            complex_number2 = self.current_token().value
+            self.eat('COMPLEX_NUMBER')
+        else:
+            complex_number2 = None  # or use a default value or an error handling
+            raise SyntaxError("Expected a complex or real number for qubit amplitude")
 
         state1 = self.current_token().value
         self.eat('QUBIT_STATE')
 
         self.eat('SEMICOLON')
 
-        # Assuming SetStatement can accept these additional arguments
-        return SetStatement(qubit_id, number, state0, number2, state1)
-
+        return SetStatement(qubit_id, complex_number, state0, complex_number2, state1)
 
     def parse_gate_application(self):
 
@@ -67,15 +72,16 @@ class Parser:
 
 # Define AST node classes here, e.g.,
 class SetStatement:
-    def __init__(self, qubit_id, number1, state0, number2, state1):
+    def __init__(self, qubit_id, complex_number1, state0, complex_number2, state1):
         self.qubit_id = qubit_id
-        self.number1 = number1
+        self.complex_number1 = complex_number1  # Changed from number1 to complex_number1
         self.state0 = state0
-        self.number2 = number2
+        self.complex_number2 = complex_number2  # Changed from number2 to complex_number2
         self.state1 = state1
-        # Debugging statements to check the values upon instantiation
+
+        # Debugging print statement
         print(f"Initializing SetStatement with:")
-        print(f"qubit_id: {qubit_id}, number1: {number1}, state0: {state0}, number2: {number2}, state1: {state1}")
+        print(f"qubit_id: {qubit_id}, complex_number1: {complex_number1}, state0: {state0}, complex_number2: {complex_number2}, state1: {state1}")
 
 
 class GateApplication:

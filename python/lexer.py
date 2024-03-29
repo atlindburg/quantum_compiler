@@ -8,13 +8,15 @@ TOKEN_REGEX = [
     (r'TO', 'TO'),
     (r'qubit', 'QUBIT'),
     (r'X|H|CNOT', 'GATE'),
-    (r'-?(\d+(\.\d*)?|\.\d+)', 'NUMBER'),  # Updated NUMBER regex
+    (r'(-?\d+(\.\d*)?|\.\d+)([+-](\d+(\.\d*)?|\.\d+)i)', 'COMPLEX_NUMBER'),  # Regex for complex numbers
+    (r'-?(\d+(\.\d*)?|\.\d+)', 'NUMBER'),  # Keep NUMBER regex for separate real numbers
     (r';', 'SEMICOLON'),
-    (r'SET', 'SET'),  # Added token for SET
-    (r'q[0-9]+', 'QUBIT_ID'),  # Pattern for qubit identifiers like q1, q2, etc.
-    (r'\{[01]\}', 'QUBIT_STATE'),  # Pattern for qubit state {0} or {1}
-    (r'.', 'UNKNOWN'),  # Any other character
+    (r'SET', 'SET'),
+    (r'q[0-9]+', 'QUBIT_ID'),
+    (r'\{[01]\}', 'QUBIT_STATE'),
+    (r'.', 'UNKNOWN'),
 ]
+
 
 class Token:
     def __init__(self, type_, value):
