@@ -3,9 +3,10 @@ import math
 class SemanticAnalyzer:
     def __init__(self, ast):
         self.ast = ast
+        self.qubit_states = {}  # To keep track of qubit states, if needed
 
     def analyze(self):
-        from parser import SetStatement
+        from parser import SetStatement, MeasurementStatement
         for statement in self.ast:
             if isinstance(statement, SetStatement):
                 self.check_qubit_normalization(statement)
@@ -32,3 +33,10 @@ class SemanticAnalyzer:
             print(error_msg)
             raise ValueError(error_msg)
 
+    def check_measurement(self, statement):
+        # Here you might want to check that the qubit exists and is initialized
+        # For example:
+        if statement.qubit_id not in self.qubit_states:
+            raise ValueError(f"Qubit {statement.qubit_id} has not been initialized.")
+        print(f"Qubit {statement.qubit_id} is ready for measurement.")
+        # You might also set or change the state here based on your simulation's requirements

@@ -12,6 +12,7 @@ TOKEN_REGEX = [
     (r'-?(\d+(\.\d*)?|\.\d+)', 'NUMBER'),  # Keep NUMBER regex for separate real numbers
     (r';', 'SEMICOLON'),
     (r'SET', 'SET'),
+    (r'MEASURE', 'MEASURE'),  # Token for Measure operation
     (r'q[0-9]+', 'QUBIT_ID'),
     (r'\{[01]\}', 'QUBIT_STATE'),
     (r'.', 'UNKNOWN'),

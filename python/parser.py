@@ -23,6 +23,8 @@ class Parser:
                 statements.append(self.parse_set_statement())
             elif self.current_token().type == 'APPLY':
                 statements.append(self.parse_gate_application())
+            elif self.current_token().type == 'MEASURE':
+                statements.append(self.parse_measurement_statement())
             else:
                 raise SyntaxError(f"Unknown statement start with token: {self.current_token().type} {self.current_token().value}")
         return statements
@@ -70,6 +72,13 @@ class Parser:
         self.eat('SEMICOLON')
         return GateApplication(gate, qubit_number)
 
+    def parse_measurement_statement(self):
+        self.eat('MEASURE')
+        qubit_id = self.current_token().value
+        self.eat('QUBIT_ID')
+        self.eat('SEMICOLON')
+        return MeasurementStatement(qubit_id)
+
 # Define AST node classes here, e.g.,
 class SetStatement:
     def __init__(self, qubit_id, complex_number1, state0, complex_number2, state1):
@@ -89,5 +98,11 @@ class GateApplication:
         self.gate = gate
         self.qubit_number = qubit_number
 
+class MeasurementStatement:
+    def __init__(self, qubit_id):
+        self.qubit_id = qubit_id
+
+    def __repr__(self):
+        return f'MeasurementStatement(qubit_id={self.qubit_id})'
 # Extend the lexer to emit an 'EOF' token at the end of the input
 

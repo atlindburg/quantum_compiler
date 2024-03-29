@@ -28,7 +28,7 @@ class Compile:
         from code_generator import CodeGenerator
         code_generator = CodeGenerator(self.ast)
         self.generated_code = code_generator.generate()
-        print("Generated C code:\n", self.generated_code)
+        print("Code generation complete.")
 
     def compile(self):
         try:
